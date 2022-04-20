@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import RadioGroup from "./radioButton";
 
-function App() {
+const center = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: "50px"
+};
+
+export default function App() {
+  const [value, setValue] = useState('')
+  const [checked, setChecked] = useState('')
+  const [valueDate, setValueDate] = useState('')
+
+  const handleChange = (e) => setValue(e.target.value)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <label>selected: {value}</label>
+      <RadioGroup
+        onChange={val => setChecked(val)}
+      >
+        <RadioGroup.RadioButton value={value}>
+          <input onChange={handleChange} />
+          <label> Sub Component </label>
+        </RadioGroup.RadioButton>
+        <RadioGroup.RadioButton value={value} >
+          <input type="date" onChange={handleChange} value={value}/>
+        </RadioGroup.RadioButton>
+      </RadioGroup>
+    </>
   );
 }
-
-export default App;
